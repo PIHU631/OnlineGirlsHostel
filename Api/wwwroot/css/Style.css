@@ -1,0 +1,274 @@
+﻿/* ================= GLOBAL ================= */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+}
+
+/* Layout */
+.container {
+    display: flex;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #2f3640;
+    color: white;
+    padding: 20px;
+}
+
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #dcdde1;
+        padding: 10px;
+        margin: 6px 0;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: 0.2s;
+    }
+
+        .sidebar a:hover {
+            background: #34495e;
+        }
+
+        .sidebar a.active {
+            background: #40739e;
+            color: white;
+            font-weight: bold;
+        }
+
+/* ================= MAIN ================= */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+    .btn.primary {
+        background: #0984e3;
+        color: white;
+    }
+
+        .btn.primary:hover {
+            background: #0873c4;
+        }
+
+    .btn.danger {
+        background: #e74c3c;
+        color: white;
+    }
+
+        .btn.danger:hover {
+            background: #c0392b;
+        }
+
+/* ================= TABLE ================= */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ================= MODAL ================= */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    width: 420px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+    .modal-content h2 {
+        margin-bottom: 20px;
+    }
+
+/* ================= FORM ================= */
+.form-group {
+    margin-bottom: 18px;
+}
+
+    /* Labels */
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #333;
+    }
+
+/* Inputs */
+input:not([type="checkbox"]),
+select {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+    /* Focus */
+    input:focus,
+    select:focus {
+        border-color: #0984e3;
+        box-shadow: 0 0 0 2px rgba(9,132,227,0.1);
+        outline: none;
+    }
+
+/* Placeholder */
+input::placeholder {
+    color: #999;
+}
+
+/* ================= CHECKBOX FIX ================= */
+input[type="checkbox"] {
+    width: auto;
+    height: auto;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ================= MODAL ACTIONS ================= */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* ================= ALERT ================= */
+.alert {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.success {
+    background: #2ecc71;
+    color: white;
+}
+
+.error-alert {
+    background: #e74c3c;
+    color: white;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Sidebar icons */
+.sidebar a i {
+    margin-right: 10px;
+}
+
+/* Header icon spacing */
+.header h1 i {
+    margin-right: 10px;
+}
+
+/* User avatar */
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .user-cell img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+/* Status badges */
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+    .status.out {
+        background: #ffeaa7;
+        color: #d35400;
+    }
+
+    .status.in {
+        background: #d4edda;
+        color: #2d6a4f;
+    }
+
+/* Table action icons */
+.action-btn {
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+    .action-btn.edit {
+        color: #0984e3;
+    }
+
+    .action-btn.delete {
+        color: #e74c3c;
+    }

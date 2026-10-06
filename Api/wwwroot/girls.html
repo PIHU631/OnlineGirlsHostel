@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girls Management</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        .loader {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #0984e3;
+        }
+
+        /* Search box */
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+            .search-box input {
+                border: none;
+                outline: none;
+            }
+
+        /* Header left section */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Empty state */
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2><i class="fa-solid fa-building"></i> Hostel</h2>
+
+            <a href="index.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="girls.html" class="active"><i class="fa-solid fa-user"></i> Girls</a>
+            <a href="hostels.html"><i class="fa-solid fa-hotel"></i> Hostels</a>
+            <a href="rooms.html"><i class="fa-solid fa-bed"></i> Rooms</a>
+            <a href="room-history.html"><i class="fa-solid fa-clock-rotate-left"></i> Room History</a>
+            <a href="staff.html"><i class="fa-solid fa-user-tie"></i> Staff</a>
+            <a href="entrylog.html"><i class="fa-solid fa-right-from-bracket"></i> Entry Logs</a>
+            <a href="foodattendance.html"><i class="fa-solid fa-utensils"></i> Food Attendance</a>
+            <a href="hostelattendance.html"><i class="fa-solid fa-clipboard-check"></i> Hostel Attendance</a>
+            <a href="marketvisit.html"><i class="fa-solid fa-store"></i> Market Visit</a>
+            <a href="visitor.html"><i class="fa-solid fa-users"></i> Visitors</a>
+        </div>
+
+        <!-- Main -->
+        <div class="main">
+
+            <!-- Header -->
+            <div class="header">
+
+                <div class="header-left">
+                    <h1><i class="fa-solid fa-user"></i> Girls</h1>
+
+                    <!-- Search -->
+                    <div class="search-box">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" placeholder="Search girls..." id="searchInput">
+                    </div>
+                </div>
+
+                <button class="btn primary" onclick="openModal()">
+                    <i class="fa-solid fa-user-plus"></i> Add New
+                </button>
+
+            </div>
+
+            <!-- Alert -->
+            <div id="alert" class="alert hidden"></div>
+
+            <!-- Loader -->
+            <div id="loader" class="loader hidden">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+            </div>
+
+            <!-- Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Girl</th>
+                        <th>Phone</th>
+                        <th>Guardian</th>
+                        <th>Room</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableBody">
+                    <!-- Empty State -->
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty">
+                                <i class="fa-solid fa-users fa-2x"></i>
+                                <p>No girls found</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden" onclick="outsideClick(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+
+            <h2 id="modalTitle">
+                <i class="fa-solid fa-user-plus"></i> Add Girl
+            </h2>
+
+            <input type="hidden" id="girlId">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input id="name" placeholder="Enter name">
+                <small class="error" id="nameError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input id="phone" placeholder="Enter phone">
+                <small class="error" id="phoneError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Guardian Name</label>
+                <input id="guardianName" placeholder="Enter guardian name">
+                <small class="error" id="guardianNameError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Guardian Phone</label>
+                <input id="guardianPhone" placeholder="Enter guardian phone">
+                <small class="error" id="guardianPhoneError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Room Id</label>
+                <input id="roomId" type="number" placeholder="Enter room id">
+                <small class="error" id="roomError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <input id="address" placeholder="Enter address">
+                <small class="error" id="addressError"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="isActive" checked>
+                    Active
+                </label>
+            </div>
+
+            <!-- Actions -->
+            <div class="modal-actions">
+                <button class="btn danger" onclick="closeModal()">
+                    <i class="fa-solid fa-xmark"></i> Cancel
+                </button>
+                <button class="btn primary" onclick="saveData()">
+                    <i class="fa-solid fa-check"></i> Save
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js" defer></script>
+    <script src="js/girls.js" defer></script>
+
+    <script>
+        function outsideClick(e) {
+            const modal = document.getElementById("modal");
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

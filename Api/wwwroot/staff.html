@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Staff Management</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2><i class="fa-solid fa-building"></i> Hostel</h2>
+
+            <a href="index.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="girls.html" class="active"><i class="fa-solid fa-user"></i> Girls</a>
+            <a href="hostels.html"><i class="fa-solid fa-hotel"></i> Hostels</a>
+            <a href="rooms.html"><i class="fa-solid fa-bed"></i> Rooms</a>
+            <a href="room-history.html"><i class="fa-solid fa-clock-rotate-left"></i> Room History</a>
+            <a href="staff.html"><i class="fa-solid fa-user-tie"></i> Staff</a>
+            <a href="entrylog.html"><i class="fa-solid fa-right-from-bracket"></i> Entry Logs</a>
+            <a href="foodattendance.html"><i class="fa-solid fa-utensils"></i> Food Attendance</a>
+            <a href="hostelattendance.html"><i class="fa-solid fa-clipboard-check"></i> Hostel Attendance</a>
+            <a href="marketvisit.html"><i class="fa-solid fa-store"></i> Market Visit</a>
+            <a href="visitor.html"><i class="fa-solid fa-users"></i> Visitors</a>
+        </div>
+
+        <!-- Main -->
+        <div class="main">
+
+            <div class="header">
+                <h1><i class="fa-solid fa-user-tie"></i> Staff Management</h1>
+
+                <button class="btn primary" onclick="openModal()">
+                    <i class="fa-solid fa-plus"></i> Add Staff
+                </button>
+            </div>
+
+            <!-- Alert -->
+            <div id="alertBox" class="alert hidden"></div>
+
+            <!-- Loader -->
+            <div id="loader" class="loader hidden">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+            </div>
+
+            <!-- Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Hostel</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="staffTable"></tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="staffModal" class="modal hidden" onclick="outsideClick(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+
+            <h2><i class="fa-solid fa-user-plus"></i> Staff</h2>
+
+            <div class="form-group">
+                <label>Hostel</label>
+                <select id="hostelId"></select>
+                <small class="error" id="hostelError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="name">
+                <small class="error" id="nameError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Role</label>
+                <select id="role">
+                    <option value="">Select Role</option>
+                    <option value="1">👩‍💼 Warden</option>
+                    <option value="2">🛡 Guard</option>
+                    <option value="3">🧹 Cleaner</option>
+                </select>
+                <small class="error" id="roleError"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" id="phone">
+                <small class="error" id="phoneError"></small>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn danger" onclick="closeModal()">
+                    <i class="fa-solid fa-xmark"></i> Cancel
+                </button>
+
+                <button class="btn primary" onclick="saveData()">
+                    <i class="fa-solid fa-check"></i> Save
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/staff.js"></script>
+
+    <script>
+        function outsideClick(e) {
+            if (e.target.id === "staffModal") closeModal();
+        }
+    </script>
+
+</body>
+</html>
